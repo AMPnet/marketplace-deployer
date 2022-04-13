@@ -232,6 +232,13 @@ contract ERC20 is IERC20 {
     }
 
     /**
+     * MINT
+     */
+    function mint(address account, uint256 amount) public {
+        _mint(account, amount);
+    }
+
+    /**
      * @dev See `IERC20.transfer`.
      *
      * Requirements:

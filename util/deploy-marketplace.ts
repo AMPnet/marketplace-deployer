@@ -11,9 +11,10 @@ async function main() {
   const weth = await wethFactory.deploy();
   console.log(`WETH9: ${weth.address}`);
 
-  const uniswapFactoryBuilder = await ethers.getContractFactory("UniswapV2Factory");
+  const uniswapFactoryBuilder = await ethers.getContractFactory("UniswapV2FactoryFork");
   const uniswapFactory = await uniswapFactoryBuilder.deploy(deployerAddress);
   console.log(`UniswapV2Factory: ${uniswapFactory.address}\nOwner: ${deployerAddress}`);
+  console.log(`Init code hash: `, await uniswapFactory.INIT_CODE_PAIR_HASH());
 
   const uniswapRouterFactory = await ethers.getContractFactory("UniswapV2Router02");
   const uniswapRouter = await uniswapRouterFactory.deploy(uniswapFactory.address, weth.address);
